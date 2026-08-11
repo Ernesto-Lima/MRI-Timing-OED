@@ -54,14 +54,14 @@ The application displays:
 ```text
 .
 ├── app.py
-├── optimized_example.py
+├── oed_model.py
 ├── environment.yml
 ├── requirements.txt
 └── README.md
 ```
 
 - `app.py` — Dash graphical interface.
-- `optimized_example.py` — mathematical model, Bayesian calibration, virtual-patient generation, MRI-timing analysis, and benefit-ratio calculations.
+- `oed_model.py` — mathematical model, Bayesian calibration, virtual-patient generation, MRI-timing analysis, and benefit-ratio calculations.
 - `environment.yml` — reproducible Conda environment.
 - `requirements.txt` — Python package requirements.
 - `README.md` — project documentation.
@@ -144,23 +144,6 @@ To stop the application, return to the terminal and press:
 Ctrl + C
 ```
 
-## Running the Python example directly
-
-The computational example can also be executed without the Dash interface:
-
-```bash
-python optimized_example.py
-```
-
-Code intended only for direct execution is protected by:
-
-```python
-if __name__ == "__main__":
-    ...
-```
-
-so importing functions from `optimized_example.py` into `app.py` does not automatically run a simulation.
-
 ## Methodological interpretation
 
 The purpose of this example is to demonstrate the paper's **synthesis, re-calibration, evaluation** workflow.
@@ -174,18 +157,6 @@ The resulting MRI3 prediction is evaluated using:
 - **Benefit ratios:** PE and PU relative to those obtained using the reference MRI2 acquisition time.
 
 These quantities are used to investigate how MRI acquisition timing changes the predictive value of the mid-treatment scan.
-
-## Reproducibility
-
-The simulation contains stochastic components because Bayesian calibration is performed with MCMC. Therefore, small differences between runs are expected unless the random-number generator is initialized with a fixed seed.
-
-For a reproducible run, a fixed NumPy generator can be used, for example:
-
-```python
-rng = np.random.default_rng(12345)
-```
-
-and passed to functions that accept the `rng` argument.
 
 ## Important notes
 
@@ -201,8 +172,6 @@ If you use this code, please cite the associated manuscript:
 
 > Wu C, Stowers CE, Xu Z, Yam C, Ma J, Rauch GM, Yankeelov TE, Lima EABF.  
 > **Optimizing MRI Acquisition Timing via Bayesian Data Assimilation to Improve Response Prediction Accuracy During Breast Cancer Neoadjuvant Therapy.**
-
-Please update this section with the journal citation and DOI once available.
 
 ## License
 
